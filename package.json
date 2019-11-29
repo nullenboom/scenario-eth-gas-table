@@ -1,0 +1,30 @@
+{
+  "name": "scenario-eth-gas-table",
+  "version": "1.0.0",
+  "description": "\"Tool to display a CLI-Table for scenario-eth-gas-reporter json output\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "eecho echo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullenboom/scenario-eth-gas-table.git"
+  },
+  "keywords": [
+    "eth",
+    "gas",
+    "usage",
+    "scenarioo",
+    "implement",
+    "variant"
+  ],
+  "author": "Niklas Ullenboom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nullenboom/scenario-eth-gas-table/issues"
+  },
+  "homepage": "https://github.com/nullenboom/scenario-eth-gas-table#readme",
+  "dependencies": {
+    "cli-table3": "^0.5.1"
+  }
+}
