@@ -4,7 +4,7 @@
   "description": "\"Tool to display a CLI-Table for scenario-eth-gas-reporter json output\"",
   "main": "index.js",
   "scripts": {
-    "test": "eecho echo"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

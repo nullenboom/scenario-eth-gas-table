@@ -1,15 +1,8 @@
 const colors = require("colors/safe");
 const Table = require("cli-table3");
 
-class ScenarioEthGasTable {
-  constructor(config) {
-    this.config = config;
-  }
- *
-   /* Formats and prints a gas statistics table.
-   * Based on https://github.com/nullenboom/eth-gas-reporter definition
-   * @param  {Object} info  json
-   */
+ const scenarioEthGasTable = {
+	
   generateTableFromJson(info, colorsActive) {
     colors.enabled = colorsActive;
 
@@ -50,7 +43,7 @@ class ScenarioEthGasTable {
     // Print
     // ---------------------------------------------------------------------------------------------
     console.log(tableOutput);
-  }
+  },
 
   _gatherAndCreatePrintRows(info) {
     const rows = [];
@@ -103,7 +96,7 @@ class ScenarioEthGasTable {
       rows.push(scenarioRows);
     });
     return rows;
-  }
+  },
 
   _createTableFormat() {
     // Configure indentation for RTD
@@ -129,7 +122,7 @@ class ScenarioEthGasTable {
     });
 
     return table;
-  }
+  },
 
   _createFirstHeaderLine(metaData) {
     let title = [
@@ -167,7 +160,7 @@ class ScenarioEthGasTable {
       }
     ];
     return title;
-  }
+  },
 
   _createSecondHeaderLine(info) {
     let methodSubtitle;
@@ -213,7 +206,7 @@ class ScenarioEthGasTable {
       {
         hAlign: "center",
         colSpan: 1,
-        content: colors.green(`Avg | # calls`)
+        content: colors.green(`Avg `)
       },
       {
         hAlign: "center",
@@ -223,12 +216,12 @@ class ScenarioEthGasTable {
       {
         hAlign: "center",
         colSpan: 1,
-        content: colors.bold(`% of Variant Gas`)
+        content: colors.bold(`# calls | % of Gas`)
       }
     ];
 
     return methodSubtitle;
-  }
+  },
 
   _createThirdEmptyHeaderRow() {
     const header = [
@@ -245,7 +238,7 @@ class ScenarioEthGasTable {
       colors.bold("")
     ];
     return header;
-  }
+  },
 
   _createVariantTitleRow(variant, minGasUsed, maxGasUsed) {
     let totalGasUsed = this._createTotalGasUsedColor(
@@ -266,7 +259,7 @@ class ScenarioEthGasTable {
       content: variantTitleString
     };
     return variantTitle;
-  }
+  },
 
   _createTotalGasUsedColor(variantGasUsed, minGasUsed, maxGasUsed) {
     if (variantGasUsed == maxGasUsed) {
@@ -276,7 +269,7 @@ class ScenarioEthGasTable {
       return colors.green.bold(`${variantGasUsed}`);
     }
     return colors.yellow.bold(`${variantGasUsed}`);
-  }
+  },
 
   _createDeploymentRows(info) {
     const deployRows = [];
@@ -309,20 +302,21 @@ class ScenarioEthGasTable {
       });
       section.push({ hAlign: "right", content: stats.min });
       section.push({ hAlign: "right", content: stats.max });
-      section.push({ hAlign: "right", content: contract.average });
+      section.push({ hAlign: "right", content: contract.averageGasUsed });
       section.push({
         hAlign: "right",
-        content: colors.grey(`${contract.percentageOfScenario} %`)
+        content: contract.totalGasUsed
       });
       section.push({
         hAlign: "right",
-        content: colors.green(contract.totalGasUsed)
+        content: colors.green(contract.numberOfDeployments +" | " +this._editPercentageValue(contract.percentageOfScenario) + " %" )
       });
+   
 
       deployRows.push(section);
     });
     return deployRows;
-  }
+  },
   /**
    * Generates method rows for one variant
    * @param  {Object} variant variant Object with methods and deployment data
@@ -352,19 +346,22 @@ class ScenarioEthGasTable {
       section.push({ hAlign: "right", content: stats.min });
       section.push({ hAlign: "right", content: stats.max });
       section.push({ hAlign: "right", content: method.averageGasUsed });
-      section.push({ hAlign: "right", content: method.numberOfCalls });
+      section.push({ hAlign: "right", content: method.totalGasUsed});
       section.push({
         hAlign: "right",
-        content: colors.green(method.totalGasUsed)
+        content: colors.green(method.numberOfCalls +" | " + this._editPercentageValue(method.percentageOfScenario) + " %")
       });
 
       methodRows.push(section);
     });
 
     return methodRows;
-  }
+  },
+
+
+_editPercentageValue(decimalPercentageValue){
+	return (decimalPercentageValue * 100).toFixed(2)
 }
 
-module.exports = UsageScenarioGasTable;
-
-module.exports = ScenarioEthGasTable;
+}
+module.exports = scenarioEthGasTable;
