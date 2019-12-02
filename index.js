@@ -275,7 +275,7 @@ const Table = require("cli-table3");
     const deployRows = [];
 
     // Alphabetize contract names
-    info.deployments.sort((a, b) => a.name.localeCompare(b.name));
+    info.deployments.sort((a, b) => a.contractName.localeCompare(b.contractName));
 
     info.deployments.forEach(contract => {
       let stats = {};
