@@ -1,6 +1,6 @@
 {
   "name": "scenario-eth-gas-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "\"Tool to display a CLI-Table for scenario-eth-gas-reporter json output\"",
   "main": "index.js",
   "scripts": {
