@@ -11,10 +11,12 @@
     "url": "git+https://github.com/nullenboom/scenario-eth-gas-table.git"
   },
   "keywords": [
+    "scenario-eth-gas-reporter",
+    "Ethereum",
     "eth",
     "gas",
     "usage",
-    "scenarioo",
+    "scenario",
     "implement",
     "variant"
   ],
