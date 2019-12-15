@@ -1,5 +1,9 @@
 ## Changelog: scenario-eth-gas-reporter
 
+# 1.0.2 / 2019-12-02
+-Helper method now are defined in utils.js 
+-NumberOfCalls got own Column again
+-Replaced Test-Header with actual ones
 
 # 1.0.1 / 2019-12-02
 -Fixes Bug when more than one contract is deployed per test
